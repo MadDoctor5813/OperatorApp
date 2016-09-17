@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Operator.Resources;
 
 namespace Operator
 {
@@ -14,9 +15,8 @@ namespace Operator
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            
-            SetContentView(Resource.Layout.TypeLayout);
 
+            StartActivity(typeof(SubmitActivity));
         }
     }
 }
