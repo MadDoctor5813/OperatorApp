@@ -32,14 +32,13 @@ namespace Operator.Resources
         {
             //fill in geocoding data
             Geocoder geocoder = new Geocoder(context);
-            Address address = geocoder.GetFromLocation(location.Longitude, location.Latitude, 1)[0];
-            location.PostalCode = address.PostalCode;
-            location.Province = address.AdminArea;
-            location.Street = address.Thoroughfare;
-            location.City = address.Locality;
+            Address address = geocoder.GetFromLocation(location.latitude, location.longitude, 1)[0];
+            location.postalCode = address.PostalCode;
+            location.province = address.AdminArea;
+            location.street = address.Thoroughfare;
+            location.city = address.Locality;
             string data = JsonConvert.SerializeObject(location);
-            byte[] response = webClient.UploadData(ServerUrl + "/updateLocationJSON/" + id, Encoding.UTF8.GetBytes(data)); 
-        }
+            byte[] response = webClient.UploadData(ServerUrl + "/updateLocationJSON/" + id, Encoding.UTF8.GetBytes(data));        }
 
         public static ActiveEmergency GetActiveEmergency(string id)
         {
