@@ -1,7 +1,7 @@
 struct EmergencySubmission
 {
     public string Id { get; set; }
-    public string Catagory { get; set; }
+    public string Category { get; set; }
     public string Details { get; set; }
 }
 
