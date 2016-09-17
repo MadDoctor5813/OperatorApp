@@ -20,6 +20,16 @@ namespace Operator.Resources
         MapFragment mapFrag;
         GoogleMap map = null;
 
+        RadioGroup locationOptions;
+
+        public bool TrackLocation
+        {
+            get
+            {
+                return locationOptions.CheckedRadioButtonId == Resource.Id.TrackButton;
+            }
+        }
+
         public LocationFragment(SubmitActivity submitActivity)
         {
             this.submitActivity = submitActivity;
@@ -38,7 +48,7 @@ namespace Operator.Resources
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-
+            locationOptions = Activity.FindViewById<RadioGroup>(Resource.Id.LocationOptions);
             Activity.FindViewById<Button>(Resource.Id.backButton).Click += BackButton_Click;
 
             initMap();
