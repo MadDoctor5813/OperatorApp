@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Android.Graphics;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -7,13 +9,13 @@ namespace ImageEncoder
 {
     public class BitmapToJpeg
     {
-        public const long DefaultJpegQualityLevel = 75L;
+        public const int DefaultJpegQualityLevel = 75;
         public const int DefaultInputPixelLimit = 1280 * 720;
 
-        private long _jpegQualityLevel = DefaultJpegQualityLevel;
-        private int _inputPixelLimit = DefaultInputPixelLimit;
+        private static int _jpegQualityLevel = DefaultJpegQualityLevel;
+        private static int _inputPixelLimit = DefaultInputPixelLimit;
 
-        public long JpegQualityLevel
+        public static int JpegQualityLevel
         {
             get
             {
@@ -32,7 +34,7 @@ namespace ImageEncoder
             }
         }
 
-        public int InputPixelLimit
+        public static int InputPixelLimit
         {
             get
             {
@@ -51,8 +53,18 @@ namespace ImageEncoder
             }
         }
 
-        public static byte[] ConvertToJpeg(byte[] bitmap)
+        public static byte[] ConvertToJpeg(byte[] bitmapBytes)
         {
+            // Create bitmap from byte array
+            Bitmap bitmap = BitmapFactory.DecodeByteArray(bitmapBytes, 0, bitmapBytes.Length);
+            if (bitmap == null)
+            {
+                // Invalid byte array
+                throw new FormatException();
+            }
+            MemoryStream outStream = new MemoryStream();
+            bitmap.Compress(Bitmap.CompressFormat.Jpeg, JpegQualityLevel, outStream);
+
             return new byte[0];
         }
     }
