@@ -13,7 +13,7 @@ using Android.Support.V13.App;
 
 namespace Operator.Resources
 {
-    class SubmitPagerAdapter : FragmentPagerAdapter
+    class SubmitPagerAdapter : FragmentStatePagerAdapter
     {
         SubmitActivity submitActivity;
 
