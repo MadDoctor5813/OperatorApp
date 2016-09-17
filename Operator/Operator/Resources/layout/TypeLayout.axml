@@ -15,5 +15,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/nextButton"
             android:layout_alignParentBottom="true" />
+        <ListView
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/TypeList"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/nextButton" />
     </RelativeLayout>
 </LinearLayout>

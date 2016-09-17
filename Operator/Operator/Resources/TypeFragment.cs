@@ -17,6 +17,8 @@ namespace Operator.Resources
     {
         SubmitActivity submitActivity;
 
+        ListView typeList;
+
         public TypeFragment(SubmitActivity submitActivity)
         {
             this.submitActivity = submitActivity;
@@ -37,6 +39,9 @@ namespace Operator.Resources
             base.OnActivityCreated(savedInstanceState);
 
             Activity.FindViewById<Button>(Resource.Id.nextButton).Click += NextButton_Click;
+            typeList = Activity.FindViewById<ListView>(Resource.Id.TypeList);
+            typeList.Adapter = ArrayAdapter.CreateFromResource(Activity, Resource.Array.EmergencyTypes, Android.Resource.Layout.SimpleListItemSingleChoice);
+            typeList.ChoiceMode = ChoiceMode.Single;
         }
 
         private void NextButton_Click(object sender, EventArgs e)
