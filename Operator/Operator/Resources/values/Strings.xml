@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ApplicationName">Operator</string>
+  <string name="ApplicationName">Operator</string>
+
+  <string name="NextButtonText">NEXT &gt;</string>
+  <string name="BackButtonText">&lt; BACK</string>
+  <string name="SubmitButtonText">SUBMIT</string>
+  <string name="ExitButtonText">EXIT</string>
 </resources>
