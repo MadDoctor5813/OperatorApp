@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator", "Operator\Operator.csproj", "{6FE4C7D2-1117-4B1C-8E69-E6A1DBE5E7D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageEncoder", "ImageEncoder\ImageEncoder.csproj", "{D2BA93A5-A6D9-4EF8-B6CE-DDD1632D7051}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{6FE4C7D2-1117-4B1C-8E69-E6A1DBE5E7D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FE4C7D2-1117-4B1C-8E69-E6A1DBE5E7D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6FE4C7D2-1117-4B1C-8E69-E6A1DBE5E7D1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D2BA93A5-A6D9-4EF8-B6CE-DDD1632D7051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2BA93A5-A6D9-4EF8-B6CE-DDD1632D7051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2BA93A5-A6D9-4EF8-B6CE-DDD1632D7051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2BA93A5-A6D9-4EF8-B6CE-DDD1632D7051}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
