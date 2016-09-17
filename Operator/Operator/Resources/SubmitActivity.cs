@@ -20,7 +20,7 @@ namespace Operator.Resources
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            //base.OnCreate(savedInstanceState);
+            base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.SubmitLayout);
             viewPager = FindViewById<NonSwipingViewPager>(Resource.Id.ViewPager);
