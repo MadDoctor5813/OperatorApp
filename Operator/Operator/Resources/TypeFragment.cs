@@ -20,6 +20,24 @@ namespace Operator.Resources
         ListView typeList;
         TextView typeFooter;
 
+        public string EmergencyType
+        {
+            get
+            {
+                return CustomType == true ? typeFooter.Text : typeList.SelectedItem.ToString();
+            }
+        }
+
+        public bool CustomType
+        {
+            get
+            {
+                return typeList.SelectedItem.ToString() == "Other"
+            }
+        }
+
+
+
         public TypeFragment(SubmitActivity submitActivity)
         {
             this.submitActivity = submitActivity;
