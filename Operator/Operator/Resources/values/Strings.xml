@@ -6,6 +6,8 @@
   <string name="BackButtonText">&lt; BACK</string>
   <string name="SubmitButtonText">SUBMIT</string>
   <string name="ExitButtonText">EXIT</string>
+  
+  <string name="TypeTitle">Emergency Type:</string>
 
   <string-array name="EmergencyTypes">
     <item>1</item>

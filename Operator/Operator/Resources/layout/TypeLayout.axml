@@ -15,13 +15,22 @@
             android:layout_height="wrap_content"
             android:id="@+id/nextButton"
             android:layout_alignParentBottom="true" />
+        <TextView
+            android:text="@string/TypeTitle"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:id="@+id/TypeTitle"
+            android:layout_marginLeft="5.0dp"
+            android:layout_marginTop="5.0dp" />
         <ListView
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/TypeList"
-            android:layout_alignParentTop="true"
+            android:layout_below="@id/TypeTitle"
             android:layout_above="@id/nextButton" />
     </RelativeLayout>
 </LinearLayout>
