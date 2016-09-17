@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Operator.Operator" android:versionCode="1" android:versionName="1.0">
-  <uses-sdk android:minSdkVersion="16" />
-  <application android:label="Operator">
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyB8yMguVNJk3JK_zXFlLqh6HVPDyaz0Tsw"/>
-  </application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Operator.Operator" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="16" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<application android:label="Operator">
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyB8yMguVNJk3JK_zXFlLqh6HVPDyaz0Tsw" />
+	</application>
 </manifest>
