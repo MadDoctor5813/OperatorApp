@@ -20,11 +20,22 @@ namespace Operator.Resources
         ListView typeList;
         TextView typeFooter;
 
+        Button submitButton;
+        Button photoSubmitButton;
+
+        string emergencyType;
+        bool customType;
+
         public string EmergencyType
         {
             get
             {
-                return CustomType == true ? typeFooter.Text : typeList.SelectedItem.ToString();
+                return emergencyType;
+            }
+
+            set
+            {
+                emergencyType = value;
             }
         }
 
@@ -32,15 +43,19 @@ namespace Operator.Resources
         {
             get
             {
-                return typeList.SelectedItem.ToString() == "Other";
+                return customType;
+            }
+
+            set
+            {
+                customType = value;
             }
         }
-
-
 
         public TypeFragment(SubmitActivity submitActivity)
         {
             this.submitActivity = submitActivity;
+            submitActivity.TypeFragment = this;
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -79,13 +94,16 @@ namespace Operator.Resources
 
         public void OnItemClick(AdapterView parent, View view, int position, long id)
         {
-            if (parent.GetItemAtPosition(position).ToString() == "Other")
+            emergencyType = parent.GetItemAtPosition(position).ToString();
+            if (emergencyType == "Other")
             {
                 typeFooter.Enabled = true;
+                customType = true;
             }
             else
             {
                 typeFooter.Enabled = false;
+                customType = false;
                 typeFooter.Text = "";
             }
         }
