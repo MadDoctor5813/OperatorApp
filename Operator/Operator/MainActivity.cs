@@ -11,14 +11,12 @@ namespace Operator
     [Activity(Label = "Operator", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            
+            SetContentView(Resource.Layout.TypeLayout);
 
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
         }
     }
 }
