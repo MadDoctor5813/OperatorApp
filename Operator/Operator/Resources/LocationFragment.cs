@@ -65,7 +65,7 @@ namespace Operator.Resources
         public void OnMapReady(GoogleMap googleMap)
         {
             this.map = googleMap;
-            //init the map here later...
+            map.MyLocationEnabled = true;
         }
     }
 }
