@@ -11,14 +11,16 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
 
 namespace Operator.Resources
 {
-    public class LocationFragment : Fragment, IOnMapReadyCallback
+    public class LocationFragment : Fragment, IOnMapReadyCallback, GoogleMap.IOnMapClickListener
     {
         private SubmitActivity submitActivity;
         MapFragment mapFrag;
         GoogleMap map = null;
+        LatLng selectedLoc;
 
         RadioGroup locationOptions;
 
@@ -27,6 +29,14 @@ namespace Operator.Resources
             get
             {
                 return locationOptions.CheckedRadioButtonId == Resource.Id.TrackButton;
+            }
+        }
+
+        public LatLng SelectedLoc
+        {
+            get
+            {
+                return selectedLoc;
             }
         }
 
@@ -76,6 +86,19 @@ namespace Operator.Resources
         {
             this.map = googleMap;
             map.MyLocationEnabled = true;
+            map.SetOnMapClickListener(this);
+        }
+
+        public void OnMapClick(LatLng point)
+        {
+            if (!TrackLocation)
+            {
+                selectedLoc = point;
+                map.Clear();
+                MarkerOptions opts = new MarkerOptions();
+                opts.SetPosition(point);
+                map.AddMarker(opts);
+            }   
         }
     }
 }
