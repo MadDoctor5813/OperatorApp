@@ -10,12 +10,15 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Android.Gms.Maps;
 
 namespace Operator.Resources
 {
-    public class LocationFragment : Fragment
+    public class LocationFragment : Fragment, IOnMapReadyCallback
     {
         private SubmitActivity submitActivity;
+        MapFragment mapFrag;
+        GoogleMap map = null;
 
         public LocationFragment(SubmitActivity submitActivity)
         {
@@ -37,6 +40,15 @@ namespace Operator.Resources
             base.OnActivityCreated(savedInstanceState);
 
             Activity.FindViewById<Button>(Resource.Id.backButton).Click += BackButton_Click;
+
+            initMap();
+        }
+
+        private void initMap()
+        {
+            mapFrag = new MapFragment();
+            FragmentManager.BeginTransaction().Add(Resource.Id.MapFrame, mapFrag).Commit();
+            mapFrag.GetMapAsync(this);
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -48,6 +60,12 @@ namespace Operator.Resources
         public override void OnDestroyView()
         {
             base.OnDestroyView();
+        }
+
+        public void OnMapReady(GoogleMap googleMap)
+        {
+            this.map = googleMap;
+            //init the map here later...
         }
     }
 }
