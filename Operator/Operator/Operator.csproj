@@ -58,11 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\LocationFragment.cs" />
     <Compile Include="Resources\NonSwipingViewPager.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\SubmitActivity.cs" />
     <Compile Include="Resources\SubmitPagerAdapter.cs" />
+    <Compile Include="Resources\TypeFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -76,6 +78,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\StatusLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\SubmitLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
