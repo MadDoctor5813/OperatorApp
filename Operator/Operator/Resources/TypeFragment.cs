@@ -32,7 +32,7 @@ namespace Operator.Resources
         {
             get
             {
-                return typeList.SelectedItem.ToString() == "Other"
+                return typeList.SelectedItem.ToString() == "Other";
             }
         }
 
