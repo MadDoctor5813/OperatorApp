@@ -16,6 +16,9 @@
   <string name="PhotoSubmit">Attach Photo</string>
   <string name="DetailsHint">Additional Details . . .</string>
 
+  <string name="StatusLabelText">Emergency Status</string>
+  <string name="DetailsLabelText">Additional Details</string>
+  
   <string-array name="EmergencyTypes">
     <item>1</item>
     <item>2</item>
