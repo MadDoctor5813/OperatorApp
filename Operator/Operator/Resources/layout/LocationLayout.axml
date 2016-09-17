@@ -30,5 +30,52 @@
                 android:id="@+id/submitButton"
                 android:layout_weight="1" />
         </LinearLayout>
+        <TextView
+            android:text="@string/LocationTitle"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5.0dp"
+            android:layout_marginLeft="5.0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:id="@+id/LocationTitle" />
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/LocationTitle"
+            android:id="@+id/LocationOptions">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/CustomLoc"
+                android:id="@+id/radioButton1" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TrackLoc"
+                android:id="@+id/radioButton2" />
+        </RadioGroup>
+        <EditText
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linearLayout1"
+            android:id="@+id/Details"
+            android:hint="@string/DetailsHint"
+            android:lines="3"
+            android:gravity="top" />
+        <Button
+            android:text="@string/PhotoSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/Details"
+            android:id="@+id/PhotoSubmit" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/LocationOptions"
+            android:layout_above="@id/PhotoSubmit"
+            android:id="@+id/MapFrame" />
     </RelativeLayout>
 </LinearLayout>

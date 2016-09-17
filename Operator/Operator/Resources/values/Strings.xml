@@ -8,6 +8,13 @@
   <string name="ExitButtonText">EXIT</string>
   
   <string name="TypeTitle">Emergency Type:</string>
+  <string name="LocationTitle">Location Options:</string>
+  
+  <string name="TrackLoc">Track My Location</string>
+  <string name="CustomLoc">Custom Location</string>
+  
+  <string name="PhotoSubmit">Attach Photo</string>
+  <string name="DetailsHint">Additional Details . . .</string>
 
   <string-array name="EmergencyTypes">
     <item>1</item>
