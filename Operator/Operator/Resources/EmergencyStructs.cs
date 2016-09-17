@@ -1,23 +1,23 @@
 struct EmergencySubmission
 {
-    public string Id { get; set; }
-    public string Category { get; set; }
-    public string Details { get; set; }
+    public string id { get; set; }
+    public string category { get; set; }
+    public string details { get; set; }
 }
 
 struct ActiveEmergency
 {
-    public string Category { get; set; }
-    public string Status { get; set; }
-    public string Response { get; set; }
+    public string category { get; set; }
+    public string status { get; set; }
+    public string response { get; set; }
 }
 
 struct GeocodedLocation
 {
-    public float Latitude { get; set; }
-    public float Longitude { get; set; }
-    public string Street { get; set; }
-    public string City { get; set; }
-    public string Province { get; set; }
-    public string PostalCode  { get; set; }
+    public float latitude { get; set; }
+    public float longitude { get; set; }
+    public string street { get; set; }
+    public string city { get; set; }
+    public string province { get; set; }
+    public string postalCode  { get; set; }
 }

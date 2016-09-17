@@ -92,8 +92,10 @@ namespace Operator.Resources
         private void SubmitButton_Click(object sender, EventArgs e)
         {
             EmergencySubmission emergency = new EmergencySubmission();
-            emergency.Category = submitActivity.TypeFragment.EmergencyType;
-            emergency.Details = detailsField.Text;
+            emergency.category = submitActivity.TypeFragment.EmergencyType;
+            emergency.details = detailsField.Text;
+                loc.latitude = (float)(SelectedLoc.Latitude);
+                loc.longitude = (float)(SelectedLoc.Longitude);
             string id = null;
             try
             {
@@ -106,8 +108,6 @@ namespace Operator.Resources
             if (!TrackLocation)
             {
                 GeocodedLocation loc = new GeocodedLocation();
-                loc.Latitude = (float)(SelectedLoc.Latitude);
-                loc.Longitude = (float)(SelectedLoc.Longitude);
                 try
                 {
                     ServerHelper.SubmitLocation(loc, id, Activity);
