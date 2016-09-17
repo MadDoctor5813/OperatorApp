@@ -12,6 +12,8 @@ using Android.Widget;
 using System.Net;
 using Newtonsoft.Json;
 using Android.Locations;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Operator.Resources
 {
@@ -49,6 +51,23 @@ namespace Operator.Resources
         public static void uploadImage(byte[] imageData, string filename, string[] labels)
         {
             webClient.UploadData(ServerUrl + "/uploadImage/" + filename, imageData);
+        }
+
+        public static void ShowErrorDialog(Context context, string title, string message)
+        {
+            new AlertDialog.Builder(context)
+                    .SetTitle(title)
+                    .SetMessage(message)
+                    .SetPositiveButton("OK", new DialogButtonListener())
+                    .Show();                   
+        }
+
+        public class DialogButtonListener : Java.Lang.Object, IDialogInterfaceOnClickListener
+        {
+            public void OnClick(IDialogInterface dialog, int which)
+            {
+                dialog.Dismiss();
+            }
         }
     }
 }
