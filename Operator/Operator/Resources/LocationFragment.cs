@@ -15,7 +15,7 @@ using Android.Gms.Maps.Model;
 
 namespace Operator.Resources
 {
-    public class LocationFragment : Fragment, IOnMapReadyCallback, GoogleMap.IOnMapClickListener
+    public class LocationFragment : Fragment, IOnMapReadyCallback, GoogleMap.IOnMapClickListener, RadioGroup.IOnCheckedChangeListener
     {
         private SubmitActivity submitActivity;
         MapFragment mapFrag;
@@ -59,6 +59,7 @@ namespace Operator.Resources
         {
             base.OnActivityCreated(savedInstanceState);
             locationOptions = Activity.FindViewById<RadioGroup>(Resource.Id.LocationOptions);
+            locationOptions.SetOnCheckedChangeListener(this);
             Activity.FindViewById<Button>(Resource.Id.backButton).Click += BackButton_Click;
 
             initMap();
@@ -99,6 +100,14 @@ namespace Operator.Resources
                 opts.SetPosition(point);
                 map.AddMarker(opts);
             }   
+        }
+
+        public void OnCheckedChanged(RadioGroup group, int checkedId)
+        {
+            if (checkedId == Resource.Id.TrackButton)
+            {
+                map.Clear();
+            }
         }
     }
 }
