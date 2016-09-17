@@ -65,12 +65,12 @@ namespace ImageEncoder
 
             // Downscale image and compress bitmap to jpeg
             MemoryStream outStream = new MemoryStream();
-            downscaleImage(bitmap).Compress(Bitmap.CompressFormat.Jpeg, JpegQualityLevel, outStream);
+            DownscaleImage(bitmap).Compress(Bitmap.CompressFormat.Jpeg, JpegQualityLevel, outStream);
 
             return new byte[0];
         }
 
-        private static Bitmap downscaleImage(Bitmap image)
+        private static Bitmap DownscaleImage(Bitmap image)
         {
             int imageSize = image.Height * image.Width;
             if (imageSize > InputPixelLimit)
