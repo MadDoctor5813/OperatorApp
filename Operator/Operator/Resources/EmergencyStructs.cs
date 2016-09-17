@@ -14,10 +14,10 @@ struct ActiveEmergency
 
 struct GeocodedLocation
 {
-    float Latitude { get; set; }
-    float Longitude { get; set; }
-    string Street { get; set; }
-    string City { get; set; }
-    string Province { get; set; }
-    string PostalCode  { get; set; }
+    public float Latitude { get; set; }
+    public float Longitude { get; set; }
+    public string Street { get; set; }
+    public string City { get; set; }
+    public string Province { get; set; }
+    public string PostalCode  { get; set; }
 }
