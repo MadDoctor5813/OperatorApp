@@ -18,6 +18,9 @@ namespace Operator.Resources
         NonSwipingViewPager viewPager;
         SubmitPagerAdapter adapter;
 
+        public TypeFragment TypeFragment { get; set; }
+        public LocationFragment LocationFragment { get; set; }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
