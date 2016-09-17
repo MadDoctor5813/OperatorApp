@@ -62,10 +62,28 @@ namespace ImageEncoder
                 // Invalid byte array
                 throw new FormatException();
             }
+
+            // Downscale image and compress bitmap to jpeg
             MemoryStream outStream = new MemoryStream();
-            bitmap.Compress(Bitmap.CompressFormat.Jpeg, JpegQualityLevel, outStream);
+            downscaleImage(bitmap).Compress(Bitmap.CompressFormat.Jpeg, JpegQualityLevel, outStream);
 
             return new byte[0];
+        }
+
+        private static Bitmap downscaleImage(Bitmap image)
+        {
+            int imageSize = image.Height * image.Width;
+            if (imageSize > InputPixelLimit)
+            {
+                // Downsize image to the specified limit
+                double scaleFactor = Math.Sqrt(image.Width) * Math.Sqrt(image.Height) / Math.Sqrt(InputPixelLimit);
+                return Bitmap.CreateScaledBitmap(image, (int)(image.Width / scaleFactor), (int)(image.Height / scaleFactor), true);
+            }
+            else
+            {
+                // Don't bother scaling if image is small enough
+                return image;
+            }
         }
     }
 }
