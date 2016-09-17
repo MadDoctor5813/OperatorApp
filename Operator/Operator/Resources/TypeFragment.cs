@@ -13,11 +13,12 @@ using Android.Widget;
 
 namespace Operator.Resources
 {
-    public class TypeFragment : Fragment
+    public class TypeFragment : Fragment, AdapterView.IOnItemClickListener
     {
         SubmitActivity submitActivity;
 
         ListView typeList;
+        TextView typeFooter;
 
         public TypeFragment(SubmitActivity submitActivity)
         {
@@ -42,6 +43,10 @@ namespace Operator.Resources
             typeList = Activity.FindViewById<ListView>(Resource.Id.TypeList);
             typeList.Adapter = ArrayAdapter.CreateFromResource(Activity, Resource.Array.EmergencyTypes, Android.Resource.Layout.SimpleListItemSingleChoice);
             typeList.ChoiceMode = ChoiceMode.Single;
+            typeList.AddFooterView(LayoutInflater.FromContext(Activity).Inflate(Resource.Layout.TypeFooter, null));
+            typeList.OnItemClickListener = this;
+
+            typeFooter = Activity.FindViewById<TextView>(Resource.Id.TypeFooter);
         }
 
         private void NextButton_Click(object sender, EventArgs e)
@@ -52,6 +57,19 @@ namespace Operator.Resources
         public override void OnDestroyView()
         {
             base.OnDestroyView();
+        }
+
+        public void OnItemClick(AdapterView parent, View view, int position, long id)
+        {
+            if (parent.GetItemAtPosition(position).ToString() == "Other")
+            {
+                typeFooter.Enabled = true;
+            }
+            else
+            {
+                typeFooter.Enabled = false;
+                typeFooter.Text = "";
+            }
         }
     }
 }
