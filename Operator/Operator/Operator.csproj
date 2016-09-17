@@ -76,11 +76,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\EmergencyStructs.cs" />
     <Compile Include="Resources\EndActivity.cs" />
     <Compile Include="Resources\LocationFragment.cs" />
     <Compile Include="Resources\NonSwipingViewPager.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ServerHelper.cs" />
     <Compile Include="Resources\StatusActivity.cs" />
     <Compile Include="Resources\SubmitActivity.cs" />
     <Compile Include="Resources\SubmitPagerAdapter.cs" />
