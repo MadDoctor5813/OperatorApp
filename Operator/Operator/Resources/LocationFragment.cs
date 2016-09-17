@@ -94,28 +94,25 @@ namespace Operator.Resources
             EmergencySubmission emergency = new EmergencySubmission();
             emergency.category = submitActivity.TypeFragment.EmergencyType;
             emergency.details = detailsField.Text;
+            GeocodedLocation loc = new GeocodedLocation();
+            if (!TrackLocation)
+            {
                 loc.latitude = (float)(SelectedLoc.Latitude);
                 loc.longitude = (float)(SelectedLoc.Longitude);
+            }
             string id = null;
             try
             {
-                id = ServerHelper.SubmitEmergency(emergency);
+                id = ServerHelper.SubmitEmergency(emergency).Trim().Replace("\"", "");
+                if (!TrackLocation)
+                {
+                    ServerHelper.SubmitLocation(loc, id, Activity);
+                }
             }
             catch (Exception ex) when (ex is WebException || ex is Java.IO.IOException)
             {
                 ServerHelper.ShowErrorDialog(Activity, "Submit Error", "Error submitting emergency. Please retry.");
-            }
-            if (!TrackLocation)
-            {
-                GeocodedLocation loc = new GeocodedLocation();
-                try
-                {
-                    ServerHelper.SubmitLocation(loc, id, Activity);
-                }
-                catch (Exception ex) when (ex is WebException || ex is Java.IO.IOException)
-                {
-                    ServerHelper.ShowErrorDialog(Activity, "Submit Error", "Error submitting emergency. Please retry.");
-                }
+                Log.Debug("HTN_APP", ex.Message);
             }
         }
 
