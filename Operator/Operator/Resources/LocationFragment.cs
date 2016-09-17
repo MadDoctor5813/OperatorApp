@@ -36,12 +36,12 @@ namespace Operator.Resources
         {
             base.OnActivityCreated(savedInstanceState);
 
-            Activity.FindViewById<Button>(Resource.Id.nextButton).Click += NextButton_Click;
+            Activity.FindViewById<Button>(Resource.Id.backButton).Click += BackButton_Click;
         }
 
-        private void NextButton_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)
         {
-            submitActivity.switchLayout(1);
+            submitActivity.switchLayout(0);
         }
 
 
