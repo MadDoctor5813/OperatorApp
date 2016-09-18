@@ -54,6 +54,7 @@ namespace Operator.Resources
         private TextView detailsField;
 
         string currentImagePath;
+        string currentImageName;
 
         public LocationFragment(SubmitActivity submitActivity)
         {
@@ -103,8 +104,8 @@ namespace Operator.Resources
                 string time = DateTime.Now.ToString("yymmdd_HHmmss");
                 string test = Android.OS.Environment.DirectoryPictures;
                 imageFile = File.CreateTempFile("OPERATOR_JPEG_", time, Activity.GetExternalFilesDir(Android.OS.Environment.DirectoryPictures));
-                currentImagePath = "file:" + imageFile.AbsolutePath;
-                currentImagePath = currentImagePath.Replace("/storage/emulated/0/", "/sdcard/");
+                currentImagePath = imageFile.AbsolutePath;
+                currentImageName = imageFile.Name;
                 Android.Net.Uri imageUri = FileProvider.GetUriForFile(Activity, "Operator.Operator.fileprovider", imageFile);
                 photoIntent.PutExtra(MediaStore.ExtraOutput, imageUri);
                 StartActivityForResult(photoIntent, 1); //1 = REQUEST_IMAGE_CAPTURE
@@ -122,6 +123,7 @@ namespace Operator.Resources
             EmergencySubmission emergency = new EmergencySubmission();
             emergency.category = submitActivity.TypeFragment.EmergencyType;
             emergency.details = detailsField.Text;
+            emergency.imageName = currentImageName;
             GeocodedLocation loc = new GeocodedLocation();
             if (!TrackLocation)
             {
@@ -138,7 +140,7 @@ namespace Operator.Resources
                 }
                 if (submittedPicture != null)
                 {
-                    ServerHelper.uploadImage(submittedPicture, currentImagePath, null);
+                    ServerHelper.uploadImage(submittedPicture, currentImageName, null);
                 }
             }
             catch (Exception ex) when (ex is WebException || ex is Java.IO.IOException)
