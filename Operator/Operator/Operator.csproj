@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GoogleVisionHelper.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\EmergencyStructs.cs" />
     <Compile Include="Resources\EndActivity.cs" />

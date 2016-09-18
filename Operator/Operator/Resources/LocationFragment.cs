@@ -116,6 +116,7 @@ namespace Operator.Resources
         public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             submittedPicture = BitmapToJpeg.ConvertToJpeg(BitmapFactory.DecodeFile(currentImagePath));
+            GoogleVisionHelper.GetImageLabels(submittedPicture);
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
