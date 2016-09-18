@@ -19,6 +19,12 @@
   <string name="StatusLabelText">Emergency Status</string>
   <string name="DetailsLabelText">Additional Details</string>
   
+  <string name="StatusIndicatorPending"><font color="red">⬤</font> Pending</string>
+  <string name="StatusIndicatorInProgress"><font color="yellow">⬤</font> Pending</string>
+  <string name="StatusIndicatorComplete"><font color="green">⬤</font> Pending</string>
+  <string name="StatusIndicatorArchives"><font color="blue">⬤</font> Pending</string>
+  <string name="StatusIndicatorTrash"><font color="red">⬤</font> Pending</string>
+  
   <string-array name="EmergencyTypes">
     <item>1</item>
     <item>2</item>
