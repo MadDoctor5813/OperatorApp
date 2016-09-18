@@ -18,6 +18,8 @@
 
   <string name="StatusLabelText">Emergency Status</string>
   <string name="DetailsLabelText">Additional Details</string>
+
+  <string name="EndText">Your emergency is now {0}. Thank you for using Operator. Please like and share us on Facebook. Even Google Plus, if you feel like it.</string>
   
   <string-array name="EmergencyTypes">
     <item>1</item>

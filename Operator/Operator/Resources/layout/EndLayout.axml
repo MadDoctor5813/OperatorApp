@@ -17,5 +17,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/exitButton"
             android:layout_alignParentBottom="true" />
+        <TextView
+            android:text="@string/EndText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/exitButton"
+            android:id="@+id/textView1"
+            android:layout_alignParentTop="true" />
     </RelativeLayout>
 </LinearLayout>
