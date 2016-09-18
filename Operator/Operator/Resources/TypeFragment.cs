@@ -20,9 +20,6 @@ namespace Operator.Resources
         ListView typeList;
         TextView typeFooter;
 
-        Button submitButton;
-        Button photoSubmitButton;
-
         string emergencyType;
         bool customType;
 
