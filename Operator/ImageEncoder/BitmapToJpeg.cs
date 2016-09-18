@@ -62,13 +62,18 @@ namespace ImageEncoder
             return outStream.ToArray();
         }
 
+        public static double GetScaleFactor(int x, int y)
+        {
+            return Math.Sqrt(x) * Math.Sqrt(y) / Math.Sqrt(InputPixelLimit);
+        }
+
         private static Bitmap DownscaleImage(Bitmap image)
         {
             int imageSize = image.Height * image.Width;
             if (imageSize > InputPixelLimit)
             {
                 // Downsize image to the specified limit
-                double scaleFactor = Math.Sqrt(image.Width) * Math.Sqrt(image.Height) / Math.Sqrt(InputPixelLimit);
+                double scaleFactor = GetScaleFactor(image.Width, image.Height);
                 return Bitmap.CreateScaledBitmap(image, (int)(image.Width / scaleFactor), (int)(image.Height / scaleFactor), true);
             }
             else
@@ -77,5 +82,7 @@ namespace ImageEncoder
                 return image;
             }
         }
+
+        
     }
 }
