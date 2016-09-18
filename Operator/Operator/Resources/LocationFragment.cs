@@ -117,7 +117,17 @@ namespace Operator.Resources
         
         public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
-            submittedPicture = BitmapToJpeg.ConvertToJpeg(BitmapFactory.DecodeFile(currentImagePath));
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.InJustDecodeBounds = true;
+            BitmapFactory.DecodeFile(currentImagePath, options);
+
+            // Calculate inSampleSize
+            options.InSampleSize = (int)(BitmapToJpeg.GetScaleFactor(options.OutWidth, options.OutHeight));
+
+            // Decode bitmap with inSampleSize set
+            options.InJustDecodeBounds = false;
+            submittedPicture = BitmapToJpeg.ConvertToJpeg(BitmapFactory.DecodeFile(currentImagePath, options));
+
             imageLabels = GoogleVisionHelper.GetImageLabels(submittedPicture);
         }
 
