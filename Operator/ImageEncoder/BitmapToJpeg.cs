@@ -53,16 +53,8 @@ namespace ImageEncoder
             }
         }
 
-        public static byte[] ConvertToJpeg(byte[] bitmapBytes)
+        public static byte[] ConvertToJpeg(Bitmap bitmap)
         {
-            // Create bitmap from byte array
-            Bitmap bitmap = BitmapFactory.DecodeByteArray(bitmapBytes, 0, bitmapBytes.Length);
-            if (bitmap == null)
-            {
-                // Invalid byte array
-                throw new FormatException();
-            }
-
             // Downscale image and compress bitmap to jpeg
             MemoryStream outStream = new MemoryStream();
             DownscaleImage(bitmap).Compress(Bitmap.CompressFormat.Jpeg, JpegQualityLevel, outStream);
