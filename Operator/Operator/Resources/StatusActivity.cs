@@ -14,11 +14,13 @@ using System.Threading;
 using Android.Gms.Maps;
 using Android.Gms.Common.Apis;
 using Android.Locations;
+using Android.Gms.Location;
+using Android.Gms.Common;
 
 namespace Operator.Resources
 {
     [Activity(Label = "StatusActivity")]
-    public class StatusActivity : Activity, Android.Gms.Location.ILocationListener
+    public class StatusActivity : Activity, Android.Gms.Location.ILocationListener, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
     {
         TextView statusText;
         TextView detailsText;
@@ -28,6 +30,8 @@ namespace Operator.Resources
         string emergencyId;
         bool trackLocation;
 
+        GoogleApiClient client;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -36,18 +40,33 @@ namespace Operator.Resources
             statusText = FindViewById<TextView>(Resource.Id.statusText);
             detailsText = FindViewById<TextView>(Resource.Id.detailsText);
 
+            client = new GoogleApiClient.Builder(this)
+                .AddApi(LocationServices.API)
+                .AddConnectionCallbacks(this)
+                .AddOnConnectionFailedListener(this)
+                .Build();
+
             emergencyId = Intent.GetStringExtra("Id");
             trackLocation = Intent.GetBooleanExtra("TrackLocation", false);
 
             refreshTimer = new Timer(new TimerCallback((obj) => { UpdateTracking(); }), null, 0, 3000);
         }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+            client.Connect();
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            client.Disconnect();
+        }
+
         private void UpdateTracking()
         {
             ActiveEmergency emergency = ServerHelper.GetActiveEmergency(emergencyId);
-
-            setStatusDisplay(emergency.status);
-            detailsText.Text = emergency.response;
             
             // Stop updates and switch to EndActivity if status is complete, archived or trash
             if (emergency.status > 2)
@@ -106,6 +125,24 @@ namespace Operator.Resources
         public void OnLocationChanged(Location location)
         {
             this.location = location;
+        }
+
+        public void OnConnected(Bundle connectionHint)
+        {
+            LocationRequest request = new LocationRequest();
+            request.SetPriority(LocationRequest.PriorityHighAccuracy);
+            request.SetInterval(3000);
+            LocationServices.FusedLocationApi.RequestLocationUpdates(client, request, this);
+        }
+
+        public void OnConnectionSuspended(int cause)
+        {
+            //nop
+        }
+
+        public void OnConnectionFailed(ConnectionResult result)
+        {
+            //nop
         }
     }
 }
