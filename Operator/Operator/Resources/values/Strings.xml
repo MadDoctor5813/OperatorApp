@@ -22,14 +22,14 @@
   <string name="EndText">Your emergency is now {0}. Thank you for using Operator. Please like and share us on Facebook. Even Google Plus, if you feel like it.</string>
   
   <string-array name="EmergencyTypes">
-    <item>1</item>
-    <item>2</item>
-    <item>3</item>
-    <item>4</item>
-    <item>5</item>
-    <item>6</item>
-    <item>7</item>
-    <item>8</item>
+    <item>Injury</item>
+    <item>Illness</item>
+    <item>Unconscious Person</item>
+    <item>Vehicle Accident</item>
+    <item>Assault</item>
+    <item>Robbery</item>
+    <item>Fire</item>
+    <item>Murder</item>
     <item>Other</item>
   </string-array>
 </resources>
