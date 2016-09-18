@@ -20,7 +20,7 @@ namespace Operator.Resources
     class ServerHelper
     {
         private static WebClient webClient = new WebClient();
-        private static readonly string ServerUrl = "http://10.21.165.134:4243";
+        private static readonly string ServerUrl = "http://operatorapp.ca";
         public static string SubmitEmergency(EmergencySubmission emergency)
         {
             string data = JsonConvert.SerializeObject(emergency);
