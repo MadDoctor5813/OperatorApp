@@ -24,13 +24,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/statusLabel"
-            android:id="@+id/statusTextView" />
+            android:id="@+id/statusText" />
         <TextView
             android:text="@string/DetailsLabelText"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/statusTextView"
+            android:layout_below="@id/statusText"
             android:id="@+id/detailsLabel"
             android:layout_marginTop="12.0dp" />
         <ScrollView
@@ -43,13 +43,9 @@
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/detailsLabel">
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/detailsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/fbedittext"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/fbedittext"
-                android:layout_marginTop="22dp"
                 android:lines="7"
                 android:text="Waiting for details..." />
         </ScrollView>
