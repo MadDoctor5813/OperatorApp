@@ -56,6 +56,8 @@ namespace Operator.Resources
         string currentImagePath;
         string currentImageName;
 
+        IList<string> imageLabels;
+
         public LocationFragment(SubmitActivity submitActivity)
         {
             this.submitActivity = submitActivity;
@@ -116,7 +118,7 @@ namespace Operator.Resources
         public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             submittedPicture = BitmapToJpeg.ConvertToJpeg(BitmapFactory.DecodeFile(currentImagePath));
-            GoogleVisionHelper.GetImageLabels(submittedPicture);
+            imageLabels = GoogleVisionHelper.GetImageLabels(submittedPicture);
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
@@ -125,6 +127,7 @@ namespace Operator.Resources
             emergency.category = submitActivity.TypeFragment.EmergencyType;
             emergency.details = detailsField.Text;
             emergency.imageName = currentImageName;
+            emergency.description = "Objects of interest: " + string.Join(" ", imageLabels);
             GeocodedLocation loc = new GeocodedLocation();
             if (!TrackLocation)
             {
