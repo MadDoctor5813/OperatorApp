@@ -146,6 +146,11 @@ namespace Operator.Resources
                 {
                     ServerHelper.uploadImage(submittedPicture, currentImageName, null);
                 }
+                Intent intent = new Intent(Activity, typeof(StatusActivity));
+                intent.PutExtra("Id", id);
+                intent.PutExtra("TrackLocation", TrackLocation);
+                StartActivity(intent);
+                submitActivity.Finish();
             }
             catch (Exception ex) when (ex is WebException || ex is Java.IO.IOException)
             {
@@ -153,11 +158,6 @@ namespace Operator.Resources
                 Log.Debug("HTN_APP", ex.Message);
             }
 
-            Intent intent = new Intent(Activity, typeof(StatusActivity));
-            intent.PutExtra("Id", id);
-            intent.PutExtra("TrackLocation", TrackLocation);
-            StartActivity(intent);
-            submitActivity.Finish();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
