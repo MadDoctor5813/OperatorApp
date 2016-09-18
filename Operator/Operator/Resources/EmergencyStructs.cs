@@ -10,7 +10,7 @@ struct EmergencySubmission
 struct ActiveEmergency
 {
     public string category { get; set; }
-    public string status { get; set; }
+    public int status { get; set; }
     public string response { get; set; }
 }
 
