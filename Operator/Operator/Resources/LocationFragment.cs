@@ -13,6 +13,11 @@ using Android.Widget;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using System.Net;
+using Android.Provider;
+using Java.IO;
+using Android.Support.V4.Content;
+using Android.Graphics;
+using ImageEncoder;
 
 namespace Operator.Resources
 {
@@ -24,6 +29,8 @@ namespace Operator.Resources
         LatLng selectedLoc;
 
         RadioGroup locationOptions;
+
+        byte[] submittedPicture;
 
         public bool TrackLocation
         {
@@ -45,6 +52,8 @@ namespace Operator.Resources
         private Button photoSubmitButton;
 
         private TextView detailsField;
+
+        string currentImagePath;
 
         public LocationFragment(SubmitActivity submitActivity)
         {
@@ -77,6 +86,7 @@ namespace Operator.Resources
             detailsField = Activity.FindViewById<TextView>(Resource.Id.Details);
         }
 
+
         private void initMap()
         {
             mapFrag = new MapFragment();
@@ -86,7 +96,25 @@ namespace Operator.Resources
 
         private void PhotoSubmitButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Intent photoIntent = new Intent(MediaStore.ActionImageCapture);
+            if (photoIntent.ResolveActivity(Activity.PackageManager) != null)
+            {
+                File imageFile;
+                string time = DateTime.Now.ToString("yymmdd_HHmmss");
+                string test = Android.OS.Environment.DirectoryPictures;
+                imageFile = File.CreateTempFile("OPERATOR_JPEG_", time, Activity.GetExternalFilesDir(Android.OS.Environment.DirectoryPictures));
+                currentImagePath = "file:" + imageFile.AbsolutePath;
+                currentImagePath = currentImagePath.Replace("/storage/emulated/0/", "/sdcard/");
+                Android.Net.Uri imageUri = FileProvider.GetUriForFile(Activity, "Operator.Operator.fileprovider", imageFile);
+                photoIntent.PutExtra(MediaStore.ExtraOutput, imageUri);
+                StartActivityForResult(photoIntent, 1); //1 = REQUEST_IMAGE_CAPTURE
+            }
+
+        }
+
+        public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            submittedPicture = BitmapToJpeg.ConvertToJpeg(BitmapFactory.DecodeFile(currentImagePath));
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
@@ -107,6 +135,10 @@ namespace Operator.Resources
                 if (!TrackLocation)
                 {
                     ServerHelper.SubmitLocation(loc, id, Activity);
+                }
+                if (submittedPicture != null)
+                {
+                    ServerHelper.uploadImage(submittedPicture, currentImagePath, null);
                 }
             }
             catch (Exception ex) when (ex is WebException || ex is Java.IO.IOException)
