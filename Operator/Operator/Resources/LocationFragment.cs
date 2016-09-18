@@ -114,7 +114,7 @@ namespace Operator.Resources
             }
 
         }
-
+        
         public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             submittedPicture = BitmapToJpeg.ConvertToJpeg(BitmapFactory.DecodeFile(currentImagePath));
@@ -152,6 +152,12 @@ namespace Operator.Resources
                 ServerHelper.ShowErrorDialog(Activity, "Submit Error", "Error submitting emergency. Please retry.");
                 Log.Debug("HTN_APP", ex.Message);
             }
+
+            Intent intent = new Intent(Activity, typeof(StatusActivity));
+            intent.PutExtra("Id", id);
+            intent.PutExtra("TrackLocation", TrackLocation);
+            StartActivity(intent);
+            submitActivity.Finish();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
