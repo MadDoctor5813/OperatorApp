@@ -3,6 +3,7 @@ struct EmergencySubmission
     public string id { get; set; }
     public string category { get; set; }
     public string details { get; set; }
+    public string imageName { get; set; }
 }
 
 struct ActiveEmergency
