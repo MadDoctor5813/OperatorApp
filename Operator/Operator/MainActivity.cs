@@ -15,8 +15,18 @@ namespace Operator
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
-            StartActivity(typeof(SubmitActivity));
+            var prefs = GetSharedPreferences("prefs", FileCreationMode.Private);
+            if (prefs.GetString("Id", null) == null)
+            {
+                StartActivity(typeof(SubmitActivity));
+            }
+            else
+            {
+                Intent intent = new Intent(this, typeof(StatusActivity));
+                intent.PutExtra("Id", prefs.GetString("Id", null));
+                intent.PutExtra("TrackLocation", prefs.GetBoolean("TrackLocation", false));
+                StartActivity(intent);
+            }
         }
     }
 }
