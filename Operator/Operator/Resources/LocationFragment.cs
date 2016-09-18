@@ -146,6 +146,10 @@ namespace Operator.Resources
                 {
                     ServerHelper.uploadImage(submittedPicture, currentImageName, null);
                 }
+                Activity.GetSharedPreferences("prefs", FileCreationMode.Private).Edit()
+                    .PutBoolean("TrackLocation", TrackLocation)
+                    .PutString("Id", id)
+                    .Commit();
                 Intent intent = new Intent(Activity, typeof(StatusActivity));
                 intent.PutExtra("Id", id);
                 intent.PutExtra("TrackLocation", TrackLocation);
