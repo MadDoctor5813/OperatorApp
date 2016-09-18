@@ -43,8 +43,8 @@ namespace Operator
             byte[] requestJSON = Encoding.UTF8.GetBytes(requestJSONStr);
             byte[] responseData = webClient.UploadData(baseUrl, requestJSON);
             VisionAPIResponse response = JsonConvert.DeserializeObject<VisionAPIResponse>(Encoding.UTF8.GetString(responseData));
-            IList<string> labels = new List<string>(MaxResults);
-            for (int i =  0; i < MaxResults; i++)
+            IList<string> labels = new List<string>(response.responses[0].labelAnnotations.Count);
+            for (int i =  0; i < response.responses[0].labelAnnotations.Count; i++)
             {
                 labels.Add(response.responses[0].labelAnnotations[i].description);
             }
